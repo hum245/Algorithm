@@ -1,13 +1,20 @@
-def dfs(x):
-    check[x] = 1
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+def dfs(x, color):
+    check[x] = color
     for i in arr[x]:
         if check[i] == False:
-            dfs(i)
+            a = dfs(i, -color)
+            if not a:
+                return False
+        elif check[i] == check[x]:
+            return False
+    return True
         
     
-n = int(input())
-
-while n!=0:
+for _ in range(n):
     v, e = map(int, input().split())
     check = [False] * (v+1)
     arr = [[] for _ in range(v+1)]
@@ -18,8 +25,9 @@ while n!=0:
         
     for i in range(1, v+1):
         if check[i] == False:
-            dfs(i)
+            result = dfs(i, 1)
+            if result == False:
+                break
             
-               
-    n -= 1
-        
+    print("YES" if result else "NO")
+   
