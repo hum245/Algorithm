@@ -1,5 +1,6 @@
 import sys
 input = sys.stdin.readline
+sys.setrecursionlimit(100000)  #크게 줘야함
 
 n = int(input())
 def dfs(x, color):
@@ -7,7 +8,7 @@ def dfs(x, color):
     for i in arr[x]:
         if check[i] == False:
             a = dfs(i, -color)
-            if not a:
+            if not a:                
                 return False
         elif check[i] == check[x]:
             return False
