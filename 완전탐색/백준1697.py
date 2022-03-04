@@ -7,13 +7,13 @@ def bfs(n):
     queue = deque()
     queue.append(n)
     while queue:
-        v = queue.popleft()
-        if v==k:
-            print(visit[v])
+        node = queue.popleft()
+        if node==k:
+            print(visit[node])
             return
-        for next in (v-1,v+1,v*2):
+        for next in (node-1,node+1,node*2):
             if 0<=next<100001 and not visit[next]:
-                visit[next] = visit[v]+1
+                visit[next] = visit[node]+1
                 queue.append(next)
                 
 bfs(n)
